@@ -65,4 +65,6 @@ class TransaccionController extends Controller
         $transaccion->delete();
         return response()->json(null, 204);
     }
+
+    
 }
