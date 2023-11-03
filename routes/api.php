@@ -12,6 +12,3 @@ use App\Http\Controllers\EstadisticasController;
 Route::apiResource('clientes', ClienteController::class);
 Route::apiResource('cuentas', CuentaController::class);
 Route::apiResource('transacciones', TransaccionController::class);
-
-Route::get('depositos', 'EstadisticasController@margenDepositos');
-Route::get('retiros', 'EstadisticasController@margenRetiros',EstadisticasController::class);

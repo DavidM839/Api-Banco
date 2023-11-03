@@ -1,6 +1,9 @@
 <?php
+
 namespace App\Http\Controllers;
-use App\Models\Transaccion; 
+
+use App\Models\Transaccion;
+use App\Models\Cuenta;
 use Illuminate\Http\Request;
 
 class TransaccionController extends Controller
@@ -13,7 +16,24 @@ class TransaccionController extends Controller
 
     public function store(Request $request)
     {
+        // Crear la transacción
         $transaccion = Transaccion::create($request->all());
+
+        // Actualizar el saldo de la cuenta
+        $cuenta = Cuenta::find($request->id_cuenta);
+
+        if (!$cuenta) {
+            return response()->json(['message' => 'Cuenta no encontrada'], 404);
+        }
+
+        if ($request->tipo === 'deposito') {
+            $cuenta->saldo += $request->monto;
+        } elseif ($request->tipo === 'retiro') {
+            $cuenta->saldo -= $request->monto;
+        }
+
+        $cuenta->save(); // Guardar el saldo actualizado en la cuenta
+
         return response()->json($transaccion, 201);
     }
 
@@ -45,6 +65,4 @@ class TransaccionController extends Controller
         $transaccion->delete();
         return response()->json(null, 204);
     }
-
-    
 }
