@@ -8,7 +8,7 @@ class CuentaController extends Controller
 {
     public function index()
     {
-        $cuentas = Cuenta::all();
+        $cuentas = Cuenta::with('cliente')->get();
         return response()->json($cuentas, 200);
     }
 
@@ -20,7 +20,7 @@ class CuentaController extends Controller
 
     public function show($id)
     {
-        $cuenta = Cuenta::find($id);
+        $cuenta = Cuenta::with('cliente')->find($id);
         if (!$cuenta) {
             return response()->json(['message' => 'Cuenta no encontrada'], 404);
         }

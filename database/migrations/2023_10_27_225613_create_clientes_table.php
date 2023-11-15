@@ -15,12 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('numero_cuenta')->unique(); 
-            $table->string('contrasena'); 
+            $table->string('numero_cuenta')->unique();
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.

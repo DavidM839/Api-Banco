@@ -16,11 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('id_cliente');
             $table->decimal('saldo', 10, 2);
             $table->timestamps();
-        
+
             $table->foreign('id_cliente')
-                  ->references('id')
-                  ->on('clientes')
-                  ->onDelete('cascade'); // Eliminación en cascada
+                ->references('id')
+                ->on('clientes')
+                ->onDelete('cascade'); // Eliminación en cascada
         });
     }
 

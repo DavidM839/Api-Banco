@@ -14,15 +14,21 @@ return new class extends Migration
         Schema::create('transacciones', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_cuenta');
+            $table->unsignedBigInteger('id_cliente'); // Agregar referencia a clientes
             $table->string('tipo');
             $table->decimal('monto', 10, 2);
             $table->timestamp('fecha');
             $table->timestamps();
-        
+
             $table->foreign('id_cuenta')
-                  ->references('id')
-                  ->on('cuentas')
-                  ->onDelete('cascade'); // Eliminación en cascada
+                ->references('id')
+                ->on('cuentas')
+                ->onDelete('cascade'); // Eliminación en cascada
+
+            $table->foreign('id_cliente')
+                ->references('id')
+                ->on('clientes')
+                ->onDelete('cascade'); // Eliminación en cascada
         });
     }
 

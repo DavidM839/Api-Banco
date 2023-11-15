@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\TransaccionController;
-use App\Http\Controllers\EstadisticasController;
-
+use App\Http\Controllers\HistorialTransaccionesController;
 
 Route::apiResource('clientes', ClienteController::class);
 Route::apiResource('cuentas', CuentaController::class);

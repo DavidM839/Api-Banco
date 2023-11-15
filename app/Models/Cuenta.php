@@ -11,6 +11,11 @@ class Cuenta extends Model
 
     protected $fillable = ['id_cliente', 'saldo'];
 
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'id_cliente');
+    }
+
     public function transacciones()
     {
         return $this->hasMany(Transaccion::class, 'id_cuenta');
